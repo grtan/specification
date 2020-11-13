@@ -55,8 +55,17 @@ export default async function (options: {
     })
   }
 
-  // 修改package.json
-  const packageJson = await import(packageJsonPath)
+  /**
+   * 读取package.json，import导入的数据是不能直接修改的
+   * 所以这里要利用Object.assign分配给其他变量
+   */
+  const packageJson = Object.assign({}, await import(packageJsonPath))
+
+  /**
+   * 由于开启了allowSyntheticDefaultImports，ts会默认添加default属性
+   * 所以这里需要删除default属性
+   */
+  delete packageJson.default
 
   // 配置husky
   packageJson.husky = packageJson.husky || {}
@@ -96,21 +105,8 @@ export default async function (options: {
   packageJson.config.commitizen = packageJson.config.commitizen || {}
   packageJson.config.commitizen.path = 'cz-conventional-changelog'
 
-  /**
-   * 重写package.json
-   * 由于开启了allowSyntheticDefaultImports，ts会默认添加default属性
-   * 所以这里需要删除default属性
-   */
-  fse.outputFileSync(
-    packageJsonPath,
-    JSON.stringify(
-      Object.assign({}, packageJson, {
-        default: undefined
-      }),
-      null,
-      '  '
-    )
-  )
+  // 重写package.json
+  fse.outputFileSync(packageJsonPath, JSON.stringify(packageJson, null, '  '))
 
   // 安装依赖包
   console.log('安装依赖包...')
