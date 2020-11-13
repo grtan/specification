@@ -13,7 +13,6 @@ test:
   script:
     # 暂时用构建来代替测试
     - echo "测试"
-    - echo $NPM_USER_EMAIL
     - npm i --registry http://npm.vivo.com.cn/
     - npm run build
   # 在哪些分支上可用
