@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.0.1 (2020-11-13)
+
+
+### Bug Fixes
+
+* 修复template没有上传到npm的问题 ([78d396d](https://gitlab.vmic.xyz///commit/78d396d4d74be558d0254bf2b44e110aa6af2006))
+
 ## 1.0.0 (2020-11-13)
 
 
