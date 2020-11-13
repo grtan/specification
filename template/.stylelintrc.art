@@ -1,0 +1,9 @@
+module.exports = {
+  extends: [
+    'stylelint-config-standard',
+    'stylelint-config-css-modules',{{if cssLang==='scss'}}
+    'stylelint-config-sass-guidelines',{{/if}}
+    'stylelint-prettier/recommended'
+  ],
+  rules: { {{if cssLang==='scss'}}'max-nesting-depth': 5{{/if}} }
+}
