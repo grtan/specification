@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.0.2 (2020-11-16)
+
+
+### Bug Fixes
+
+* 修复vue文件使用js语法时eslint配置错误的问题 ([d53ec3e](https://gitlab.vmic.xyz///commit/d53ec3ef68039446ddf1c6c0bf9ea1849c96f397))
+
 ## 1.0.1 (2020-11-13)
 
 
