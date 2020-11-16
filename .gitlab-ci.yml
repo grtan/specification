@@ -38,6 +38,7 @@ publish:
   stage: publish
   script:
     - echo "发布到公司内部npm"
+    - echo -u $NPM_USER_NAME -p $NPM_USER_PWD -e $NPM_USER_EMAIL -r http://npm.vivo.com.cn
     - npm i -g npm-cli-login --registry http://npm.vivo.com.cn/
     # 这里仓库地址后面不能加/，否则登录失败
     - npm-cli-login -u $NPM_USER_NAME -p $NPM_USER_PWD -e $NPM_USER_EMAIL -r http://npm.vivo.com.cn

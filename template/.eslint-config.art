@@ -33,7 +33,7 @@ module.exports = {
       ]
     },{{/if}}{{if vue}}
     {
-      files: ['*.vue'],
+      files: ['*.vue'],{{if jsLang==='ts'}}
       parserOptions: {
         /**
          * 利用@typescript-eslint/parser来解析vue文件中的script部分
@@ -43,19 +43,19 @@ module.exports = {
         extraFileExtensions: ['.vue'],
         // @typescript-eslint/parser使用
         project: './tsconfig.json'
-      },
+      },{{/if}}
       extends: [
-        'standard',
+        'standard',{{if jsLang==='ts'}}
         /**
          * 因为standard-with-typescript只对*.ts *.tsx进行ts校验
          * 所以这里要使用@typescript-eslint/recommended进行ts校验
          * @typescript-eslint/recommended必须要放在vue/recommended前
          */
-        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended',{{/if}}
         'plugin:vue/recommended',
         'plugin:prettier/recommended',
-        'prettier/standard',
-        'prettier/@typescript-eslint',
+        'prettier/standard',{{if jsLang==='ts'}}
+        'prettier/@typescript-eslint',{{/if}}
         'prettier/vue'
       ]
     },{{/if}}{{if html}}
