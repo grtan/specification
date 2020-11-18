@@ -10,8 +10,7 @@
     "lint": "eslint .",
     "dev": "ts-node src/index.ts",
     "build": "tsc",
-    "release": "[ -e CHANGELOG.md ] && (HUSKY_SKIP_HOOKS=1 standard-version --skip.tag) || (HUSKY_SKIP_HOOKS=1 standard-version -f --skip.tag)",
-    "tag": "standard-version --skip.bump --skip.changelog --skip.commit",
+    "release": "HUSKY_SKIP_HOOKS=1 standard-version",
     "prepublishOnly": "npm run build"
   },
   "repository": {
