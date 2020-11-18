@@ -14,7 +14,7 @@ module.exports = {
     {
       files: ['*.js', '*.jsx'],
       extends: ['standard', 'plugin:prettier/recommended', 'prettier/standard']
-    },{{if jsLang==='ts'}}    
+    }{{if jsLang==='ts'}},
     {
       files: ['*.ts', '*.tsx'],
       parserOptions: {
@@ -31,7 +31,7 @@ module.exports = {
         'prettier/standard',
         'prettier/@typescript-eslint'
       ]
-    },{{/if}}{{if vue}}
+    }{{/if}}{{if vue}},
     {
       files: ['*.vue'],{{if jsLang==='ts'}}
       parserOptions: {
@@ -58,7 +58,7 @@ module.exports = {
         'prettier/@typescript-eslint',{{/if}}
         'prettier/vue'
       ]
-    },{{/if}}{{if html}}
+    }{{/if}}{{if html}},
     {
       files: ['*.html'],
       extends: ['standard', 'plugin:prettier/recommended', 'prettier/standard'],

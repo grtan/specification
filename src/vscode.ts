@@ -27,6 +27,8 @@ export default function (options: {
     settingsPath,
     JSON.stringify(
       Object.assign(settings, {
+        // 文件末尾插入空行
+        'files.insertFinalNewline': true,
         // 文件保存时自动格式化
         'editor.formatOnSave': true,
         // 开启lint自动修复
