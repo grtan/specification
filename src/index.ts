@@ -2,6 +2,7 @@
 
 // 让node支持ts的baseUrl，paths路径转换
 import 'tsconfig-paths/register'
+import 'core-js/es'
 import path from 'path'
 import { program } from 'commander'
 import inquirer from 'inquirer'
@@ -77,9 +78,9 @@ async function main() {
         html: result.html
       }
 
-  await setVscode(config)
-  await setPackage(config)
-  await setConfig(config)
+  setVscode(config)
+  setPackage(config)
+  setConfig(config)
 }
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises

@@ -26,6 +26,7 @@
   "dependencies": {
     "art-template": "^4.13.2",
     "commander": "^6.2.0",
+    "core-js": "^3.7.0",
     "fs-extra": "^9.0.1",
     "inquirer": "^7.3.3",
     "tsconfig-paths": "^3.9.0",
