@@ -1,6 +1,6 @@
 {
   "name": "@game/specification",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "游戏前端统一项目代码规范的命令行工具",
   "main": "dist/index.js",
   "bin": {
@@ -10,8 +10,9 @@
     "lint": "eslint .",
     "dev": "ts-node src/index.ts",
     "build": "tsc",
-    "release": "[ -e CHANGELOG.md ] && (HUSKY_SKIP_HOOKS=1 standard-version --skip.tag) || (HUSKY_SKIP_HOOKS=1 standard-version -f --skip.tag)",
-    "tag": "standard-version --skip.bump --skip.changelog --skip.commit",
+    "beta": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease beta && git push --follow-tags origin && npm publish --tag beta --registry http://npm.vivo.com.cn/",
+    "release": "HUSKY_SKIP_HOOKS=1 standard-version --skip.tag && git push --follow-tags origin",
+    "pub": "HUSKY_SKIP_HOOKS=1 standard-version --skip.bump --skip.changelog --skip.commit && git push --follow-tags origin && npm publish --registry http://npm.vivo.com.cn/",
     "prepublishOnly": "npm run build"
   },
   "repository": {
@@ -27,6 +28,7 @@
   "dependencies": {
     "art-template": "^4.13.2",
     "commander": "^6.2.0",
+    "core-js": "^3.7.0",
     "fs-extra": "^9.0.1",
     "inquirer": "^7.3.3",
     "tsconfig-paths": "^3.9.0",

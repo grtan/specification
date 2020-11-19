@@ -1,7 +1,8 @@
 import path from 'path'
 import fse from 'fs-extra'
+import { readJson } from './utils'
 
-export default async function (options: {
+export default function (options: {
   path: string
   jsLang: 'js' | 'ts'
   cssLang: 'css' | 'scss' | 'none'
@@ -20,13 +21,14 @@ export default async function (options: {
   }
 
   // 设置settings.json
-  const settings = Object.assign({}, await import(settingsPath))
+  const settings = readJson(settingsPath)
 
-  delete settings.default
   fse.outputFileSync(
     settingsPath,
     JSON.stringify(
       Object.assign(settings, {
+        // 文件末尾插入空行
+        'files.insertFinalNewline': true,
         // 文件保存时自动格式化
         'editor.formatOnSave': true,
         // 开启lint自动修复
@@ -72,9 +74,8 @@ export default async function (options: {
   )
 
   // 设置extensions.json
-  const extensions = Object.assign({}, await import(extensionsPath))
+  const extensions = readJson(extensionsPath)
 
-  delete extensions.default
   fse.outputFileSync(
     extensionsPath,
     JSON.stringify(

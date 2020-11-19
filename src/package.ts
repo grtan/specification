@@ -1,6 +1,7 @@
 import path from 'path'
 import { spawnSync } from 'child_process'
 import fse from 'fs-extra'
+import { readJson } from './utils'
 
 const base = [
   'eslint',
@@ -36,7 +37,7 @@ const scss = ['stylelint-config-sass-guidelines']
 const vue = ['eslint-plugin-vue']
 const html = ['eslint-plugin-html']
 
-export default async function (options: {
+export default function (options: {
   path: string
   jsLang: 'js' | 'ts'
   cssLang: 'css' | 'scss' | 'none'
@@ -59,13 +60,7 @@ export default async function (options: {
    * 读取package.json，import导入的数据是不能直接修改的
    * 所以这里要利用Object.assign分配给其他变量
    */
-  const packageJson = Object.assign({}, await import(packageJsonPath))
-
-  /**
-   * 由于开启了allowSyntheticDefaultImports，ts会默认添加default属性
-   * 所以这里需要删除default属性
-   */
-  delete packageJson.default
+  const packageJson = readJson(packageJsonPath)
 
   // 配置husky
   packageJson.husky = packageJson.husky || {}

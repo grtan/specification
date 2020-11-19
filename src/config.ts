@@ -2,7 +2,7 @@ import path from 'path'
 import fse from 'fs-extra'
 import artTemplate from 'art-template'
 
-export default async function (options: {
+export default function (options: {
   path: string
   jsLang: 'js' | 'ts'
   cssLang: 'css' | 'scss' | 'none'
