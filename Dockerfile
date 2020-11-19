@@ -18,4 +18,4 @@ RUN npm i --registry http://npm.vivo.com.cn/
 COPY . /app
 
 # 启动后运行命令：发布正式版本、打tag并发布到npm
-CMD npm run release && git push --follow-tags origin && npm publish --registry http://npm.vivo.com.cn/
+CMD npm run pub
