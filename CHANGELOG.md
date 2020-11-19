@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://gitlab.vmic.xyz///compare/v1.1.0-beta.0...v1.1.0) (2020-11-19)
+
+## [1.1.0-beta.0](https://gitlab.vmic.xyz///compare/v1.0.3-beta.0...v1.1.0-beta.0) (2020-11-19)
+
+
+### Features
+
+* 新增依赖包版本限制 ([39eacc7](https://gitlab.vmic.xyz///commit/39eacc7b1a86d4cc2090f899b6400066c45654e2))
+
 ### [1.0.3](https://gitlab.vmic.xyz///compare/v1.0.3-beta.0...v1.0.3) (2020-11-19)
 
 ### [1.0.3-beta.0](https://gitlab.vmic.xyz///compare/v1.0.2-rc.0...v1.0.3-beta.0) (2020-11-18)

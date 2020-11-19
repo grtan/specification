@@ -1,0 +1,67 @@
+# 依赖镜像
+image: node:12.18.3
+
+# 步骤
+stages:
+  # - test
+  - tag
+  - publish-beta
+  - publish
+
+# dev分支有提交时进行测试
+# test:
+#   stage: test
+#   script:
+#     # 暂时用构建来代替测试
+#     - echo "测试"
+#     - npm i --registry http://npm.vivo.com.cn/
+#     - npm run build
+#   # 在哪些分支上可用
+#   only:
+#     - dev
+
+# master分支有提交时打tag
+tag:
+  stage: tag
+  script:
+    - echo "打tag"
+    - git config user.name "${GITLAB_USER_FULL_NAME}"
+    - git config user.email "${GITLAB_USER_EMAIL}"
+    - git remote set-url origin https://$GITLAB_USER_NAME:$GITLAB_USER_PWD@gitlab.vmic.xyz/game-common/specification.git
+    - npm i -D standard-version
+    - npm run tag
+  only:
+    - master
+
+# 非master分支打tag时发布beta包
+publish-beta:
+  stage: publish-beta
+  script:
+    - echo "发布到公司内部npm"
+    - echo -u $NPM_USER_NAME -p $NPM_USER_PWD -e $NPM_USER_EMAIL -r http://npm.vivo.com.cn
+    - npm i -g npm-cli-login --registry http://npm.vivo.com.cn/
+    # 这里仓库地址后面不能加/，否则登录失败
+    - npm-cli-login -u tanxin -p vivo -e xintan@vivo.com -r http://npm.vivo.com.cn
+    - npm i --registry http://npm.vivo.com.cn/
+    - npm publish --tag beta --registry http://npm.vivo.com.cn/
+  only:
+    - tags
+  except:
+    - master
+
+# master分支打tag时发布正式包
+publish:
+  stage: publish
+  script:
+    - echo "发布到公司内部npm"
+    - echo -u $NPM_USER_NAME -p $NPM_USER_PWD -e $NPM_USER_EMAIL -r http://npm.vivo.com.cn
+    - npm i -g npm-cli-login --registry http://npm.vivo.com.cn/
+    # 这里仓库地址后面不能加/，否则登录失败
+    - npm-cli-login -u tanxin -p vivo -e xintan@vivo.com -r http://npm.vivo.com.cn
+    - npm i --registry http://npm.vivo.com.cn/
+    - npm publish --registry http://npm.vivo.com.cn/
+  only:
+    - tags
+  except:
+    # 非master分支
+    - /^(?!master$)/
