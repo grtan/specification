@@ -4,38 +4,38 @@ import fse from 'fs-extra'
 import { readJson } from './utils'
 
 const base = [
-  'eslint',
-  'eslint-config-standard',
-  'eslint-plugin-import',
-  'eslint-plugin-node',
-  'eslint-plugin-promise',
-  'eslint-config-prettier',
-  'eslint-plugin-prettier',
-  'prettier',
-  'husky',
-  'lint-staged',
-  'commitizen',
-  'cz-conventional-changelog',
-  '@commitlint/cli',
-  '@commitlint/config-conventional'
+  'eslint@7',
+  'eslint-config-standard@16',
+  'eslint-plugin-import@2',
+  'eslint-plugin-node@11',
+  'eslint-plugin-promise@4',
+  'eslint-config-prettier@6',
+  'eslint-plugin-prettier@3',
+  'prettier@2',
+  'husky@4',
+  'lint-staged@10',
+  'commitizen@4',
+  'cz-conventional-changelog@3',
+  '@commitlint/cli@11',
+  '@commitlint/config-conventional@11'
 ]
 const ts = [
   'typescript',
-  '@typescript-eslint/eslint-plugin',
-  '@typescript-eslint/parser',
-  'eslint-plugin-standard',
-  'eslint-config-standard-with-typescript'
+  '@typescript-eslint/eslint-plugin@4',
+  '@typescript-eslint/parser@4',
+  'eslint-plugin-standard@4',
+  'eslint-config-standard-with-typescript@19'
 ]
 const css = [
-  'stylelint',
-  'stylelint-config-standard',
-  'stylelint-config-css-modules',
-  'stylelint-config-prettier',
-  'stylelint-prettier'
+  'stylelint@13',
+  'stylelint-config-standard@20',
+  'stylelint-config-css-modules@2',
+  'stylelint-config-prettier@8',
+  'stylelint-prettier@1'
 ]
-const scss = ['stylelint-config-sass-guidelines']
-const vue = ['eslint-plugin-vue']
-const html = ['eslint-plugin-html']
+const scss = ['stylelint-config-sass-guidelines@7']
+const vue = ['eslint-plugin-vue@7']
+const html = ['eslint-plugin-html@6']
 
 export default function (options: {
   path: string

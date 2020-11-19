@@ -13,7 +13,8 @@
     "beta": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease beta && git push --follow-tags origin",
     "release": "HUSKY_SKIP_HOOKS=1 standard-version --skip.tag && git push --follow-tags origin",
     "tag": "standard-version --skip.bump --skip.changelog --skip.commit && git push origin --tags",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "commit": "cz"
   },
   "repository": {
     "type": "git",
@@ -62,7 +63,6 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
