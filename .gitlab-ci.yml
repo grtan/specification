@@ -5,7 +5,8 @@ image: node:12.18.3
 stages:
   # - test
   - tag
-  # - publish
+  - publish-beta
+  - publish
 
 # dev分支有提交时进行测试
 # test:
@@ -31,16 +32,36 @@ tag:
     - npm run tag
   only:
     - master
-# 打tag后发布到私有npm仓库
-# publish:
-#   stage: publish
-#   script:
-#     - echo "发布到公司内部npm"
-#     - echo -u $NPM_USER_NAME -p $NPM_USER_PWD -e $NPM_USER_EMAIL -r http://npm.vivo.com.cn
-#     - npm i -g npm-cli-login --registry http://npm.vivo.com.cn/
-#     # 这里仓库地址后面不能加/，否则登录失败
-#     - npm-cli-login -u $NPM_USER_NAME -p $NPM_USER_PWD -e $NPM_USER_EMAIL -r http://npm.vivo.com.cn
-#     - npm i --registry http://npm.vivo.com.cn/
-#     - npm publish --registry http://npm.vivo.com.cn/
-#   only:
-#     - tags
+
+# 非master分支打tag时发布beta包
+publish-beta:
+  stage: publish-beta
+  script:
+    - echo "发布到公司内部npm"
+    - echo -u $NPM_USER_NAME -p $NPM_USER_PWD -e $NPM_USER_EMAIL -r http://npm.vivo.com.cn
+    - npm i -g npm-cli-login --registry http://npm.vivo.com.cn/
+    # 这里仓库地址后面不能加/，否则登录失败
+    - npm-cli-login -u tanxin -p vivo -e xintan@vivo.com -r http://npm.vivo.com.cn
+    - npm i --registry http://npm.vivo.com.cn/
+    - npm publish --tag beta --registry http://npm.vivo.com.cn/
+  only:
+    - tags
+  except:
+    - master
+
+# master分支打tag时发布正式包
+publish:
+  stage: publish
+  script:
+    - echo "发布到公司内部npm"
+    - echo -u $NPM_USER_NAME -p $NPM_USER_PWD -e $NPM_USER_EMAIL -r http://npm.vivo.com.cn
+    - npm i -g npm-cli-login --registry http://npm.vivo.com.cn/
+    # 这里仓库地址后面不能加/，否则登录失败
+    - npm-cli-login -u tanxin -p vivo -e xintan@vivo.com -r http://npm.vivo.com.cn
+    - npm i --registry http://npm.vivo.com.cn/
+    - npm publish --registry http://npm.vivo.com.cn/
+  only:
+    - tags
+  except:
+    # 非master分支
+    - /^(?!master$)/
