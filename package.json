@@ -2,13 +2,13 @@
   "name": "@game/specification",
   "version": "1.1.1-beta.1",
   "description": "游戏前端统一项目代码规范的命令行工具",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
   "bin": {
-    "spec": "dist/index.js"
+    "spec": "./dist/index.js"
   },
   "scripts": {
     "lint": "eslint .",
-    "dev": "ts-node src/index.ts",
+    "dev": "ts-node ./src/index.ts",
     "build": "tsc",
     "beta": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease beta && git push --follow-tags origin",
     "release": "HUSKY_SKIP_HOOKS=1 standard-version --skip.tag && git push --follow-tags origin",

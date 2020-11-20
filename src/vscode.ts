@@ -1,6 +1,6 @@
 import path from 'path'
 import fse from 'fs-extra'
-import { readJson } from './utils'
+import { readJson } from '@/utils'
 
 export default function (options: {
   path: string

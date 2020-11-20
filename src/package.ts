@@ -1,7 +1,7 @@
 import path from 'path'
 import { spawnSync } from 'child_process'
 import fse from 'fs-extra'
-import { readJson } from './utils'
+import { readJson } from '@/utils'
 
 const base = [
   'eslint@7',
