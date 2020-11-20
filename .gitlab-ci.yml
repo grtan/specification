@@ -47,7 +47,8 @@ publish-beta:
   only:
     - tags
   except:
-    - master
+    # 正式版本标签
+    - ^v[\d.]+$/
 
 # master分支打tag时发布正式包
 publish:
@@ -63,5 +64,5 @@ publish:
   only:
     - tags
   except:
-    # 非master分支
-    - /^(?!master$)/
+    # 非正式版本标签
+    - /^v[\d.]+-.*$/

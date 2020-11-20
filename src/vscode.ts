@@ -27,6 +27,8 @@ export default function (options: {
     settingsPath,
     JSON.stringify(
       Object.assign(settings, {
+        // 行尾字符
+        'files.eol': '\n',
         // 文件末尾插入空行
         'files.insertFinalNewline': true,
         // 文件保存时自动格式化

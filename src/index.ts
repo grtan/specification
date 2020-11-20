@@ -4,6 +4,7 @@
 import 'tsconfig-paths/register'
 import 'core-js/es'
 import path from 'path'
+import { spawnSync } from 'child_process'
 import { program } from 'commander'
 import inquirer from 'inquirer'
 import fse from 'fs-extra'
@@ -78,6 +79,12 @@ async function main() {
         html: result.html
       }
 
+  // 设置git检出代码时不自动将LF转成CRLF，检入代码时自动将CRLF转换成LF
+  spawnSync('git', ['config', '--local', 'core.autocrlf', 'input'], {
+    cwd: pt,
+    stdio: 'inherit',
+    shell: true
+  })
   setVscode(config)
   setPackage(config)
   setConfig(config)
