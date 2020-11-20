@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://gitlab.vmic.xyz///compare/v1.1.1-beta.2...v1.1.1) (2020-11-20)
+
+### [1.1.1-beta.2](https://gitlab.vmic.xyz///compare/v1.1.1-beta.1...v1.1.1-beta.2) (2020-11-20)
+
+
+### Bug Fixes
+
+* 修复构建后的包tsconfig-paths找不到tsconfig.json的问题 ([9304880](https://gitlab.vmic.xyz///commit/9304880390324c82609522c5e96b3eb862841221))
+
+### [1.1.1-beta.1](https://gitlab.vmic.xyz///compare/v1.1.1-beta.0...v1.1.1-beta.1) (2020-11-20)
+
+### [1.1.1-beta.0](https://gitlab.vmic.xyz///compare/v1.1.0-beta.0...v1.1.1-beta.0) (2020-11-20)
+
+
+### Bug Fixes
+
+* 修复跨平台行尾字符CRLF/LF的问题；将代码提交命令改成npm run commit；修复gitlab ci/cd标签判断错误的问题 ([bfa028a](https://gitlab.vmic.xyz///commit/bfa028ab8a0508a9d98dc21911ac089641b89210))
+
 ## [1.1.0](https://gitlab.vmic.xyz///compare/v1.1.0-beta.0...v1.1.0) (2020-11-19)
 
 ## [1.1.0-beta.0](https://gitlab.vmic.xyz///compare/v1.0.3-beta.0...v1.1.0-beta.0) (2020-11-19)

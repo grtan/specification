@@ -1,7 +1,7 @@
 import path from 'path'
 import { spawnSync } from 'child_process'
 import fse from 'fs-extra'
-import { readJson } from './utils'
+import { readJson } from '@/utils'
 
 const base = [
   'eslint@7',
@@ -62,11 +62,14 @@ export default function (options: {
    */
   const packageJson = readJson(packageJsonPath)
 
+  // 配置scripts
+  packageJson.scripts = packageJson.scripts || {}
+  packageJson.scripts.commit = 'cz'
+
   // 配置husky
   packageJson.husky = packageJson.husky || {}
   packageJson.husky.hooks = packageJson.husky.hooks || {}
   packageJson.husky.hooks['pre-commit'] = 'lint-staged'
-  packageJson.husky.hooks['prepare-commit-msg'] = 'exec < /dev/tty && git cz --hook || true'
   packageJson.husky.hooks['commit-msg'] = 'commitlint -E HUSKY_GIT_PARAMS'
 
   // 配置lint-staged

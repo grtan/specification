@@ -1,6 +1,6 @@
 import path from 'path'
 import fse from 'fs-extra'
-import { readJson } from './utils'
+import { readJson } from '@/utils'
 
 export default function (options: {
   path: string
@@ -27,6 +27,8 @@ export default function (options: {
     settingsPath,
     JSON.stringify(
       Object.assign(settings, {
+        // 行尾字符
+        'files.eol': '\n',
         // 文件末尾插入空行
         'files.insertFinalNewline': true,
         // 文件保存时自动格式化

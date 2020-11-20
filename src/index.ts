@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
-// 让node支持ts的baseUrl，paths路径转换
-import 'tsconfig-paths/register'
 import 'core-js/es'
+import './tsconfig-paths'
 import path from 'path'
+import { spawnSync } from 'child_process'
 import { program } from 'commander'
 import inquirer from 'inquirer'
 import fse from 'fs-extra'
-import setVscode from './vscode'
-import setPackage from './package'
-import setConfig from './config'
+import setVscode from '@/vscode'
+import setPackage from '@/package'
+import setConfig from '@/config'
 
 program.option('-p, --path [value]', '工作目录路径', process.cwd())
 program.parse(process.argv)
@@ -78,6 +78,12 @@ async function main() {
         html: result.html
       }
 
+  // 设置git检出代码时不自动将LF转成CRLF，检入代码时自动将CRLF转换成LF
+  spawnSync('git', ['config', '--local', 'core.autocrlf', 'input'], {
+    cwd: pt,
+    stdio: 'inherit',
+    shell: true
+  })
   setVscode(config)
   setPackage(config)
   setConfig(config)

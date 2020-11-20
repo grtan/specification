@@ -33,7 +33,7 @@ tag:
   only:
     - master
 
-# 非master分支打tag时发布beta包
+# 非master分支打beta版本tag时发布beta包
 publish-beta:
   stage: publish-beta
   script:
@@ -43,13 +43,14 @@ publish-beta:
     # 这里仓库地址后面不能加/，否则登录失败
     - npm-cli-login -u tanxin -p vivo -e xintan@vivo.com -r http://npm.vivo.com.cn
     - npm i --registry http://npm.vivo.com.cn/
-    - npm publish --tag beta --registry http://npm.vivo.com.cn/
+    - npm publish --tag beta --registry http://npm.vivo.com.cn/ --unsafe-perm
   only:
     - tags
   except:
-    - master
+    # 正式版本标签
+    - ^v[\d.]+$/
 
-# master分支打tag时发布正式包
+# master分支打正式版本tag时发布正式包
 publish:
   stage: publish
   script:
@@ -59,9 +60,9 @@ publish:
     # 这里仓库地址后面不能加/，否则登录失败
     - npm-cli-login -u tanxin -p vivo -e xintan@vivo.com -r http://npm.vivo.com.cn
     - npm i --registry http://npm.vivo.com.cn/
-    - npm publish --registry http://npm.vivo.com.cn/
+    - npm publish --registry http://npm.vivo.com.cn/ --unsafe-perm
   only:
     - tags
   except:
-    # 非master分支
-    - /^(?!master$)/
+    # 非正式版本标签
+    - /^v[\d.]+-.*$/
