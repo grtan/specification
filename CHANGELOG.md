@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1-beta.1](https://gitlab.vmic.xyz///compare/v1.1.1-beta.0...v1.1.1-beta.1) (2020-11-20)
+
 ### [1.1.1-beta.0](https://gitlab.vmic.xyz///compare/v1.1.0-beta.0...v1.1.1-beta.0) (2020-11-20)
 
 
