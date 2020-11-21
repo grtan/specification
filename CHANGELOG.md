@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2-beta.0](https://gitlab.vmic.xyz///compare/v1.1.1-beta.2...v1.1.2-beta.0) (2020-11-21)
+
+
+### Bug Fixes
+
+* 修复npm-cli-login登录时使用默认npm仓库的问题 ([c4ef91f](https://gitlab.vmic.xyz///commit/c4ef91f229485fb28207537296658dd5caa310b9))
+
 ### [1.1.1](https://gitlab.vmic.xyz///compare/v1.1.1-beta.2...v1.1.1) (2020-11-20)
 
 ### [1.1.1-beta.2](https://gitlab.vmic.xyz///compare/v1.1.1-beta.1...v1.1.1-beta.2) (2020-11-20)
