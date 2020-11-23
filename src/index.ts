@@ -19,64 +19,40 @@ if (!fse.pathExistsSync(program.path)) {
 }
 
 async function main() {
-  const result = await inquirer.prompt([
-    {
-      name: 'all',
-      type: 'confirm',
-      message: '设置完整规范还是自定义？'
-    },
+  console.log('设置需要统一规范项目的特性')
+  const { jsLang, cssLang, vue, html } = await inquirer.prompt([
     {
       name: 'jsLang',
       type: 'list',
-      message: '请选择js代码语言',
-      choices: ['js', 'ts'],
-      when(answer) {
-        return !answer.all
-      }
+      message: 'js代码语言',
+      choices: ['js', 'ts']
     },
     {
       name: 'cssLang',
       type: 'list',
-      message: '请选择css代码语言',
-      choices: ['none', 'css', 'scss'],
-      when(answer) {
-        return !answer.all
-      }
+      message: 'css代码语言',
+      choices: ['none', 'css', 'scss']
     },
     {
       name: 'vue',
       type: 'confirm',
-      message: '是否为vue项目？',
-      when(answer) {
-        return !answer.all
-      }
+      message: '是否为vue项目？'
     },
     {
       name: 'html',
       type: 'confirm',
-      message: '是否存在html文件？',
-      when(answer) {
-        return !answer.all
-      }
+      message: '是否存在html文件？'
     }
   ])
 
   const pt = path.resolve(process.cwd(), program.path)
-  const config = result.all
-    ? {
-        path: pt,
-        jsLang: 'ts',
-        cssLang: 'scss',
-        vue: true,
-        html: true
-      }
-    : {
-        path: pt,
-        jsLang: result.jsLang,
-        cssLang: result.cssLang,
-        vue: result.vue,
-        html: result.html
-      }
+  const config = {
+    path: pt,
+    jsLang,
+    cssLang,
+    vue,
+    html
+  }
 
   // 设置git检出代码时不自动将LF转成CRLF，检入代码时自动将CRLF转换成LF
   spawnSync('git', ['config', '--local', 'core.autocrlf', 'input'], {
