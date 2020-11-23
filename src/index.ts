@@ -84,9 +84,9 @@ async function main() {
     stdio: 'inherit',
     shell: true
   })
+  setConfig(config)
   setVscode(config)
   setPackage(config)
-  setConfig(config)
 }
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises

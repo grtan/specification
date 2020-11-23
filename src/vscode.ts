@@ -1,6 +1,8 @@
 import path from 'path'
+import { spawnSync } from 'child_process'
 import fse from 'fs-extra'
-import { readJson } from '@/utils'
+import { sync as commandExistsSync } from 'command-exists'
+import { readJson, osName } from '@/utils'
 
 export default function (options: {
   path: string
@@ -77,20 +79,48 @@ export default function (options: {
 
   // 设置extensions.json
   const extensions = readJson(extensionsPath)
+  const recommendations = [
+    'esbenp.prettier-vscode',
+    'dbaeumer.vscode-eslint',
+    ...(options.cssLang !== 'none' ? ['stylelint.vscode-stylelint'] : []),
+    ...(options.vue ? ['octref.vetur'] : [])
+  ]
 
-  fse.outputFileSync(
-    extensionsPath,
-    JSON.stringify(
-      Object.assign(extensions, {
-        recommendations: [
-          'esbenp.prettier-vscode',
-          'dbaeumer.vscode-eslint',
-          ...(options.cssLang !== 'none' ? ['stylelint.vscode-stylelint'] : []),
-          ...(options.vue ? ['octref.vetur'] : [])
-        ]
-      }),
-      null,
-      '  '
-    )
-  )
+  extensions.recommendations = extensions.recommendations || []
+  recommendations.forEach(plugin => {
+    if (!extensions.recommendations.includes(plugin)) {
+      extensions.recommendations.push(plugin)
+    }
+  })
+
+  fse.outputFileSync(extensionsPath, JSON.stringify(extensions, null, '  '))
+
+  // 安装vscode插件
+  recommendations.forEach(plugin => {
+    if (!commandExistsSync('code')) {
+      if (osName === 'MacOS' && commandExistsSync('sh')) {
+        spawnSync(
+          'export',
+          [
+            'PATH=\\"/Applications/Visual Studio Code.app/Contents/Resources/app/bin:\\$PATH\\"',
+            '&&',
+            'code',
+            '--install-extension',
+            plugin
+          ],
+          {
+            cwd: options.path,
+            stdio: 'inherit',
+            shell: true
+          }
+        )
+      }
+    } else {
+      spawnSync('code', ['--install-extension', plugin], {
+        cwd: options.path,
+        stdio: 'inherit',
+        shell: true
+      })
+    }
+  })
 }
