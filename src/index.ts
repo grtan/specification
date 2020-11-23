@@ -19,7 +19,7 @@ if (!fse.pathExistsSync(program.path)) {
 }
 
 async function main() {
-  console.log('设置需要统一规范项目的特性')
+  console.log('请设置需要统一规范项目的特性')
   const { jsLang, cssLang, vue, html } = await inquirer.prompt([
     {
       name: 'jsLang',

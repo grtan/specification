@@ -102,7 +102,7 @@ export default function (options: {
         spawnSync(
           'export',
           [
-            'PATH=\\"/Applications/Visual Studio Code.app/Contents/Resources/app/bin:\\$PATH\\"',
+            'PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"',
             '&&',
             'code',
             '--install-extension',
