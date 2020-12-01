@@ -12,7 +12,7 @@ export default function (options: {
   // 生成.browserslistrc
   fse.outputFileSync(
     path.resolve(options.path, '.browserslistrc'),
-    artTemplate(path.resolve(__dirname, '../template/.browserslistrc.art'), {})
+    artTemplate(path.resolve(__dirname, '../template/.browserslistrc.art'), options)
   )
 
   // 生成.eslint-config.js
@@ -24,7 +24,7 @@ export default function (options: {
   // 生成.eslintrc.js
   fse.outputFileSync(
     path.resolve(options.path, '.eslintrc.js'),
-    artTemplate(path.resolve(__dirname, '../template/.eslintrc.art'), {})
+    artTemplate(path.resolve(__dirname, '../template/.eslintrc.art'), options)
   )
 
   // 生成.prettierrc.js
@@ -33,17 +33,19 @@ export default function (options: {
     artTemplate(path.resolve(__dirname, '../template/.prettierrc.art'), options)
   )
 
-  // 生成.stylelintrc.js
+  // 生成、删除.stylelintrc.js
   if (options.cssLang !== 'none') {
     fse.outputFileSync(
       path.resolve(options.path, '.stylelintrc.js'),
       artTemplate(path.resolve(__dirname, '../template/.stylelintrc.art'), options)
     )
+  } else {
+    fse.removeSync(path.resolve(options.path, '.stylelintrc.js'))
   }
 
   // 生成commitlint.config.js
   fse.outputFileSync(
     path.resolve(options.path, 'commitlint.config.js'),
-    artTemplate(path.resolve(__dirname, '../template/commitlint.config.art'), {})
+    artTemplate(path.resolve(__dirname, '../template/commitlint.config.art'), options)
   )
 }

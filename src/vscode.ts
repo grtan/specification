@@ -14,21 +14,15 @@ export default function (options: {
   const settingsPath = path.resolve(options.path, '.vscode/settings.json')
   const extensionsPath = path.resolve(options.path, '.vscode/extensions.json')
 
-  if (!fse.pathExistsSync(settingsPath)) {
-    fse.outputFileSync(settingsPath, JSON.stringify({}))
-  }
-
   if (!fse.pathExistsSync(extensionsPath)) {
     fse.outputFileSync(extensionsPath, JSON.stringify({}))
   }
 
-  // 设置settings.json
-  const settings = readJson(settingsPath)
-
+  // 覆盖settings.json
   fse.outputFileSync(
     settingsPath,
     JSON.stringify(
-      Object.assign(settings, {
+      {
         // 行尾字符
         'files.eol': '\n',
         // 文件末尾插入空行
@@ -67,11 +61,9 @@ export default function (options: {
         // 使用项目中的eslint包和配置
         'eslint.nodePath': '',
         'eslint.options': {
-          // 每一项都要赋值
-          resolvePluginsRelativeTo: '',
           configFile: ''
         }
-      }),
+      },
       null,
       '  '
     )

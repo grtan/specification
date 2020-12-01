@@ -1,7 +1,8 @@
 import path from 'path'
 import { spawnSync } from 'child_process'
 import fse from 'fs-extra'
-import { readJson } from '@/utils'
+import { sync as commandExistsSync } from 'command-exists'
+import { readJson, removeVersion } from '@/utils'
 
 const base = [
   'eslint@7',
@@ -45,7 +46,10 @@ export default function (options: {
   html: boolean
 }) {
   const packageJsonPath = path.resolve(options.path, 'package.json')
+  // 需要安装的npm包
   const packages = [...base]
+  // 需要卸载的npm包
+  let unusedPackages = []
 
   if (!fse.pathExistsSync(packageJsonPath)) {
     console.log('package.json不存在，自动生成')
@@ -73,7 +77,7 @@ export default function (options: {
   packageJson.husky.hooks['commit-msg'] = 'commitlint -E HUSKY_GIT_PARAMS'
 
   // 配置lint-staged
-  packageJson['lint-staged'] = packageJson['lint-staged'] || {}
+  packageJson['lint-staged'] = {}
   packageJson['lint-staged'][
     `*.{${[
       options.jsLang === 'js' ? ['js', 'jsx'] : [],
@@ -111,33 +115,58 @@ export default function (options: {
 
   if (options.jsLang === 'ts') {
     packages.push(...ts)
+  } else {
+    unusedPackages.push(...ts)
   }
 
   if (options.cssLang !== 'none') {
     packages.push(...css)
+  } else {
+    unusedPackages.push(...css)
   }
 
   if (options.cssLang === 'scss') {
     packages.push(...scss)
+  } else {
+    unusedPackages.push(...scss)
   }
 
   if (options.vue) {
     packages.push(...vue)
+  } else {
+    unusedPackages.push(...vue)
   }
 
   if (options.html) {
     packages.push(...html)
+  } else {
+    unusedPackages.push(...html)
   }
 
+  unusedPackages = unusedPackages.map(pkg => removeVersion(pkg))
+
+  // 卸载无用的包，安装需要的包
   switch (true) {
-    case fse.pathExistsSync(path.resolve(options.path, 'yarn.lock')):
+    case fse.pathExistsSync(path.resolve(options.path, 'yarn.lock')) && commandExistsSync('yarn'):
+      unusedPackages.length &&
+        spawnSync('yarn', ['remove', ...unusedPackages], {
+          cwd: options.path,
+          stdio: 'inherit',
+          shell: true
+        })
       spawnSync('yarn', ['add', '-D', ...packages], {
         cwd: options.path,
         stdio: 'inherit',
         shell: true
       })
       break
-    case fse.pathExistsSync(path.resolve(options.path, 'pnpm-lock.yaml')):
+    case fse.pathExistsSync(path.resolve(options.path, 'pnpm-lock.yaml')) && commandExistsSync('pnpm'):
+      unusedPackages.length &&
+        spawnSync('pnpm', ['remove', ...unusedPackages], {
+          cwd: options.path,
+          stdio: 'inherit',
+          shell: true
+        })
       spawnSync('pnpm', ['add', '-D', ...packages], {
         cwd: options.path,
         stdio: 'inherit',
@@ -145,6 +174,12 @@ export default function (options: {
       })
       break
     default:
+      unusedPackages.length &&
+        spawnSync('npm', ['un', ...unusedPackages], {
+          cwd: options.path,
+          stdio: 'inherit',
+          shell: true
+        })
       spawnSync('npm', ['i', '-D', ...packages], {
         cwd: options.path,
         stdio: 'inherit',

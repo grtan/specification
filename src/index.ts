@@ -54,12 +54,17 @@ async function main() {
     html
   }
 
-  // 设置git检出代码时不自动将LF转成CRLF，检入代码时自动将CRLF转换成LF
-  spawnSync('git', ['config', '--local', 'core.autocrlf', 'input'], {
-    cwd: pt,
-    stdio: 'inherit',
-    shell: true
-  })
+  // 如果为git仓库,设置git检出代码时不自动将LF转成CRLF，检入代码时自动将CRLF转换成LF
+  const gitDirectory = path.resolve(pt, '.git')
+
+  if (fse.pathExistsSync(gitDirectory) && fse.lstatSync(gitDirectory).isDirectory()) {
+    spawnSync('git', ['config', '--local', 'core.autocrlf', 'input'], {
+      cwd: pt,
+      stdio: 'inherit',
+      shell: true
+    })
+  }
+
   setConfig(config)
   setVscode(config)
   setPackage(config)

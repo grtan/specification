@@ -5,5 +5,25 @@ module.exports = {
     'stylelint-config-sass-guidelines',{{/if}}
     'stylelint-prettier/recommended'
   ],
-  rules: { {{if cssLang==='scss'}}'max-nesting-depth': 5{{/if}} }
+  rules: {
+    // css不允许嵌套
+    'max-nesting-depth': {{if cssLang==='css'}}0{{else}}[
+      4,
+      {
+        ignoreAtRules: [
+          'each',
+          'media',
+          'supports',
+          'include'
+        ]
+      }
+    ]{{/if}}{{if vue}},
+    // 兼容vue深度作用选择器
+    'selector-pseudo-element-no-unknown': [
+      true,
+      {
+        ignorePseudoElements: ['v-deep']
+      }
+    ]{{/if}}
+  }
 }

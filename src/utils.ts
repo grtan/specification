@@ -19,6 +19,7 @@ export function readJson(pt: string) {
   )
 }
 
+// 操作系统名称
 export const osName = (function () {
   switch (os.platform()) {
     case 'darwin':
@@ -33,3 +34,8 @@ export const osName = (function () {
       return 'other'
   }
 })()
+
+// 移除npm包名中的版本信息
+export function removeVersion(pkg: string) {
+  return pkg.replace(/(?!^)@.*$/, '')
+}
