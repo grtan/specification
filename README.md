@@ -225,3 +225,7 @@ spec -p xx/xx/my-project
   2. 可能是用户设置的[vscode 用户设置](https://code.visualstudio.com/docs/getstarted/settings)与工具设置的[vscode 工作空间设置（.vscode/settings.json）](https://code.visualstudio.com/docs/getstarted/settings)的某些配置项冲突了，导致 vscode eslint 插件无法正常工作，此时需要修正用户设置中相关的配置项
 
   3. 如果排除原因 1、2 后还有问题，可能是一些其他的特殊原因导致的，此时可以尝试重启 vscode
+
+- 已经使用了 spec 命令初始化过的项目，想要变更项目特性时，如何再次设置统一规范？
+
+  > 跟初次使用一样，直接在项目目录下运行`spec`命令就行了，会自动新增或者删除 npm 包、修改配置文件、修改 vscode 工作空间设置文件等。**提示：执行该命令时，最好先提交代码，这样既可以看到执行命令前后的差异，又可以防止误删代码的情况**
