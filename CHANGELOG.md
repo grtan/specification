@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3-beta.2](https://gitlab.vmic.xyz///compare/v1.1.3-beta.1...v1.1.3-beta.2) (2020-12-02)
+
+
+### Bug Fixes
+
+* 添加查看版本的命令 ([5287fd2](https://gitlab.vmic.xyz///commit/5287fd267f69c1eb81971a1cd6dff0cd5adac85e))
+
 ### [1.1.3-beta.1](https://gitlab.vmic.xyz///compare/v1.1.3-beta.0...v1.1.3-beta.1) (2020-12-02)
 
 
