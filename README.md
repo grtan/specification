@@ -23,6 +23,9 @@ spec
 
 # 或者在任意路径中执行spec命令，同时将项目目录当作参数传入
 spec -p xx/xx/my-project
+
+# 查看当前版本
+spec -v
 ```
 
 ## 选项

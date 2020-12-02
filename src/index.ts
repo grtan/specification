@@ -10,15 +10,17 @@ import fse from 'fs-extra'
 import setVscode from '@/vscode'
 import setPackage from '@/package'
 import setConfig from '@/config'
+import { readJson } from '@/utils'
 
-program.option('-p, --path [value]', '工作目录路径', process.cwd())
+program.version(readJson(path.resolve(__dirname, '../package.json')).version, '-v, --version', '查看当前版本')
+program.option('-p, --path [value]', '要应用统一规范的项目的路径', process.cwd())
 program.parse(process.argv)
 
-if (!fse.pathExistsSync(program.path)) {
-  throw new Error(`路径${program.path}不存在`)
-}
-
 async function main() {
+  if (!fse.pathExistsSync(program.path)) {
+    throw new Error(`路径${program.path}不存在`)
+  }
+
   console.log('请设置需要统一规范项目的特性')
   const { jsLang, cssLang, vue, html } = await inquirer.prompt([
     {
