@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3-beta.1](https://gitlab.vmic.xyz///compare/v1.1.3-beta.0...v1.1.3-beta.1) (2020-12-02)
+
+
+### Bug Fixes
+
+* 不校验某些类型文件时，清理对应的配置文件、npm包等；.vscode/settings.json采用覆盖的方式 ([ea30a6d](https://gitlab.vmic.xyz///commit/ea30a6db9ad3a93e880ba108153c7ccffbb4ab01))
+
 ### [1.1.3-beta.0](https://gitlab.vmic.xyz///compare/v1.1.2-beta.0...v1.1.3-beta.0) (2020-11-23)
 
 
