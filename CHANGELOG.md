@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://gitlab.vmic.xyz///compare/v1.1.3-beta.2...v1.1.3) (2020-12-02)
+
+### [1.1.3-beta.2](https://gitlab.vmic.xyz///compare/v1.1.3-beta.1...v1.1.3-beta.2) (2020-12-02)
+
+
+### Bug Fixes
+
+* 添加查看版本的命令 ([5287fd2](https://gitlab.vmic.xyz///commit/5287fd267f69c1eb81971a1cd6dff0cd5adac85e))
+
+### [1.1.3-beta.1](https://gitlab.vmic.xyz///compare/v1.1.3-beta.0...v1.1.3-beta.1) (2020-12-02)
+
+
+### Bug Fixes
+
+* 不校验某些类型文件时，清理对应的配置文件、npm包等；.vscode/settings.json采用覆盖的方式 ([ea30a6d](https://gitlab.vmic.xyz///commit/ea30a6db9ad3a93e880ba108153c7ccffbb4ab01))
+
+### [1.1.3-beta.0](https://gitlab.vmic.xyz///compare/v1.1.2-beta.0...v1.1.3-beta.0) (2020-11-23)
+
+
+### Bug Fixes
+
+* 优化命令使用体验 ([0852d12](https://gitlab.vmic.xyz///commit/0852d12c799891c2dee3781914f7d293dcd2e44c))
+* 修复code命令设置无效的问题 ([4c39fce](https://gitlab.vmic.xyz///commit/4c39fce329f48c791243333efcaaab6998a38d0b))
+* 修复没有自动安装vscode插件的问题 ([64076eb](https://gitlab.vmic.xyz///commit/64076eb53aeb7138e82ebfeecc5d1d3fddbb7b4a))
+
 ### [1.1.2](https://gitlab.vmic.xyz///compare/v1.1.2-beta.0...v1.1.2) (2020-11-21)
 
 ### [1.1.2-beta.0](https://gitlab.vmic.xyz///compare/v1.1.1-beta.2...v1.1.2-beta.0) (2020-11-21)

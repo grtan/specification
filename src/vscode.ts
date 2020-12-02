@@ -1,6 +1,8 @@
 import path from 'path'
+import { spawnSync } from 'child_process'
 import fse from 'fs-extra'
-import { readJson } from '@/utils'
+import { sync as commandExistsSync } from 'command-exists'
+import { readJson, osName } from '@/utils'
 
 export default function (options: {
   path: string
@@ -12,21 +14,15 @@ export default function (options: {
   const settingsPath = path.resolve(options.path, '.vscode/settings.json')
   const extensionsPath = path.resolve(options.path, '.vscode/extensions.json')
 
-  if (!fse.pathExistsSync(settingsPath)) {
-    fse.outputFileSync(settingsPath, JSON.stringify({}))
-  }
-
   if (!fse.pathExistsSync(extensionsPath)) {
     fse.outputFileSync(extensionsPath, JSON.stringify({}))
   }
 
-  // 设置settings.json
-  const settings = readJson(settingsPath)
-
+  // 覆盖settings.json
   fse.outputFileSync(
     settingsPath,
     JSON.stringify(
-      Object.assign(settings, {
+      {
         // 行尾字符
         'files.eol': '\n',
         // 文件末尾插入空行
@@ -65,11 +61,9 @@ export default function (options: {
         // 使用项目中的eslint包和配置
         'eslint.nodePath': '',
         'eslint.options': {
-          // 每一项都要赋值
-          resolvePluginsRelativeTo: '',
           configFile: ''
         }
-      }),
+      },
       null,
       '  '
     )
@@ -77,20 +71,48 @@ export default function (options: {
 
   // 设置extensions.json
   const extensions = readJson(extensionsPath)
+  const recommendations = [
+    'esbenp.prettier-vscode',
+    'dbaeumer.vscode-eslint',
+    ...(options.cssLang !== 'none' ? ['stylelint.vscode-stylelint'] : []),
+    ...(options.vue ? ['octref.vetur'] : [])
+  ]
 
-  fse.outputFileSync(
-    extensionsPath,
-    JSON.stringify(
-      Object.assign(extensions, {
-        recommendations: [
-          'esbenp.prettier-vscode',
-          'dbaeumer.vscode-eslint',
-          ...(options.cssLang !== 'none' ? ['stylelint.vscode-stylelint'] : []),
-          ...(options.vue ? ['octref.vetur'] : [])
-        ]
-      }),
-      null,
-      '  '
-    )
-  )
+  extensions.recommendations = extensions.recommendations || []
+  recommendations.forEach(plugin => {
+    if (!extensions.recommendations.includes(plugin)) {
+      extensions.recommendations.push(plugin)
+    }
+  })
+
+  fse.outputFileSync(extensionsPath, JSON.stringify(extensions, null, '  '))
+
+  // 安装vscode插件
+  recommendations.forEach(plugin => {
+    if (!commandExistsSync('code')) {
+      if (osName === 'MacOS' && commandExistsSync('sh')) {
+        spawnSync(
+          'export',
+          [
+            'PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"',
+            '&&',
+            'code',
+            '--install-extension',
+            plugin
+          ],
+          {
+            cwd: options.path,
+            stdio: 'inherit',
+            shell: true
+          }
+        )
+      }
+    } else {
+      spawnSync('code', ['--install-extension', plugin], {
+        cwd: options.path,
+        stdio: 'inherit',
+        shell: true
+      })
+    }
+  })
 }
