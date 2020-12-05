@@ -35,6 +35,8 @@ export default function (options: {
         },
         // 设置prettier为所有文件的默认格式化器
         'editor.defaultFormatter': 'esbenp.prettier-vscode',
+        // 取消全局prettier配置文件
+        'prettier.configPath': '',
         // 禁止prettier格式化js、ts、css、vue文件，统一使用eslint/stylelint
         'prettier.disableLanguages': [
           'javascript',
