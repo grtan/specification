@@ -6,7 +6,6 @@ module.exports = {
     'stylelint-prettier/recommended'
   ],
   rules: {
-    // css不允许嵌套
     'max-nesting-depth': {{if cssLang==='css'}}0{{else}}[
       4,
       {
