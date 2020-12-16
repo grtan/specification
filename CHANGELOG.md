@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0-beta.0](https://gitlab.vmic.xyz///compare/v1.1.3-beta.2...v1.2.0-beta.0) (2020-12-16)
+
+
+### Features
+
+* 设置git不忽略相关的文件 ([e2b3d84](https://gitlab.vmic.xyz///commit/e2b3d84d5bdf50464b2f25622e83e5e2221ed492))
+
+
+### Bug Fixes
+
+* 新增取消全局prettier配置文件的设置；完善文档 ([3d68bc2](https://gitlab.vmic.xyz///commit/3d68bc27155876ac8f61896145be39393ab9e15a))
+
 ### [1.1.3](https://gitlab.vmic.xyz///compare/v1.1.3-beta.2...v1.1.3) (2020-12-02)
 
 ### [1.1.3-beta.2](https://gitlab.vmic.xyz///compare/v1.1.3-beta.1...v1.1.3-beta.2) (2020-12-02)
