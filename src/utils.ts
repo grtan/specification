@@ -1,4 +1,5 @@
 import os from 'os'
+import path from 'path'
 import fse from 'fs-extra'
 
 // 读取json，支持携带js风格注释
@@ -38,4 +39,26 @@ export const osName = (function () {
 // 移除npm包名中的版本信息
 export function removeVersion(pkg: string) {
   return pkg.replace(/(?!^)@.*$/, '')
+}
+
+/**
+ * git不忽略某个文件
+ * @param projectPath 项目路径
+ * @param fileRelativePath 不忽略的文件的相对路径，如.eslintrc.js，不能写成./.eslintrc.js
+ */
+export function gitNotIgnoreFile(projectPath: string, fileRelativePath: string) {
+  const gitIgnorePath = path.resolve(projectPath, '.gitignore')
+  const parsedPath = '/' + fileRelativePath
+
+  if (!fse.pathExistsSync(gitIgnorePath)) {
+    fse.outputFileSync(gitIgnorePath, '')
+  }
+
+  const gitIgnore = fse.readFileSync(gitIgnorePath, {
+    encoding: 'utf8'
+  })
+
+  if (!new RegExp(`^\\s*!${parsedPath.replace(/\./g, '\\.')}\\s*$`, 'm').test(gitIgnore)) {
+    fse.outputFileSync(gitIgnorePath, `${gitIgnore}\n!${parsedPath}\n`)
+  }
 }
