@@ -5,38 +5,38 @@ import { sync as commandExistsSync } from 'command-exists'
 import { readJson, removeVersion } from '@/utils'
 
 const base = [
-  'eslint@7',
-  'eslint-config-standard@16',
-  'eslint-plugin-import@2',
-  'eslint-plugin-node@11',
-  'eslint-plugin-promise@4',
-  'eslint-config-prettier@6',
-  'eslint-plugin-prettier@3',
-  'prettier@2',
-  'husky@4',
-  'lint-staged@10',
-  'commitizen@4',
-  'cz-conventional-changelog@3',
-  '@commitlint/cli@11',
-  '@commitlint/config-conventional@11'
+  'eslint@^7.12.1',
+  'eslint-config-standard@^16.0.2',
+  'eslint-plugin-import@^2.22.1',
+  'eslint-plugin-node@^11.1.0',
+  'eslint-plugin-promise@^4.2.1',
+  'eslint-config-prettier@^6.15.0',
+  'eslint-plugin-prettier@^3.1.4',
+  'prettier@^2.1.2',
+  'husky@^4.3.0',
+  'lint-staged@^10.5.1',
+  'commitizen@^4.2.2',
+  'cz-conventional-changelog@^3.3.0',
+  '@commitlint/cli@^11.0.0',
+  '@commitlint/config-conventional@^11.0.0'
 ]
 const ts = [
   'typescript',
-  '@typescript-eslint/eslint-plugin@4',
-  '@typescript-eslint/parser@4',
-  'eslint-plugin-standard@4',
-  'eslint-config-standard-with-typescript@19'
+  '@typescript-eslint/eslint-plugin@^4.6.1',
+  '@typescript-eslint/parser@^4.6.1',
+  'eslint-plugin-standard@^4.0.2',
+  'eslint-config-standard-with-typescript@^19.0.1'
 ]
 const css = [
-  'stylelint@13',
-  'stylelint-config-standard@20',
-  'stylelint-config-css-modules@2',
-  'stylelint-config-prettier@8',
-  'stylelint-prettier@1'
+  'stylelint@^13.7.2',
+  'stylelint-config-standard@^20.0.0',
+  'stylelint-config-css-modules@^2.2.0',
+  'stylelint-config-prettier@^8.0.2',
+  'stylelint-prettier@^1.1.2'
 ]
-const scss = ['stylelint-config-sass-guidelines@7']
-const vue = ['eslint-plugin-vue@7']
-const html = ['eslint-plugin-html@6']
+const scss = ['stylelint-config-sass-guidelines@^7.1.0']
+const vue = ['eslint-plugin-vue@^7.1.0']
+const html = ['eslint-plugin-html@^6.1.0']
 
 export default function (options: {
   path: string
