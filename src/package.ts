@@ -31,6 +31,7 @@ const css = [
   'stylelint@^13.7.2',
   'stylelint-config-standard@^20.0.0',
   'stylelint-config-css-modules@^2.2.0',
+  'stylelint-order@^4.1.0',
   'stylelint-config-prettier@^8.0.2',
   'stylelint-prettier@^1.1.2'
 ]
@@ -41,7 +42,7 @@ const html = ['eslint-plugin-html@^6.1.0']
 export default function (options: {
   path: string
   jsLang: 'js' | 'ts'
-  cssLang: 'css' | 'scss' | 'none'
+  cssLang: 'css' | 'scss' | 'less' | 'none'
   vue: boolean
   html: boolean
 }) {
@@ -94,6 +95,7 @@ export default function (options: {
       `*.{${[
         options.cssLang === 'css' ? ['css'] : [],
         options.cssLang === 'scss' ? ['css', 'scss'] : [],
+        options.cssLang === 'less' ? ['css', 'less'] : [],
         options.vue ? ['vue'] : [],
         options.html ? ['html'] : []
       ]

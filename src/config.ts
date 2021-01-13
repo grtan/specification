@@ -5,7 +5,7 @@ import artTemplate from 'art-template'
 export default function (options: {
   path: string
   jsLang: 'js' | 'ts'
-  cssLang: 'css' | 'scss' | 'none'
+  cssLang: 'css' | 'scss' | 'less' | 'none'
   vue: boolean
   html: boolean
 }) {

@@ -33,7 +33,7 @@ async function main() {
       name: 'cssLang',
       type: 'list',
       message: 'css代码语言',
-      choices: ['none', 'css', 'scss']
+      choices: ['none', 'css', 'scss', 'less']
     },
     {
       name: 'vue',
