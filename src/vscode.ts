@@ -7,7 +7,7 @@ import { readJson, osName } from '@/utils'
 export default function (options: {
   path: string
   jsLang: 'js' | 'ts'
-  cssLang: 'css' | 'scss' | 'none'
+  cssLang: 'css' | 'scss' | 'less' | 'none'
   vue: boolean
   html: boolean
 }) {
@@ -35,6 +35,8 @@ export default function (options: {
         },
         // 设置prettier为所有文件的默认格式化器
         'editor.defaultFormatter': 'esbenp.prettier-vscode',
+        // 取消全局prettier配置文件
+        'prettier.configPath': '',
         // 禁止prettier格式化js、ts、css、vue文件，统一使用eslint/stylelint
         'prettier.disableLanguages': [
           'javascript',
@@ -42,6 +44,7 @@ export default function (options: {
           ...(options.jsLang === 'ts' ? ['typescript', 'typescriptreact'] : []),
           ...(options.cssLang === 'css' ? ['css'] : []),
           ...(options.cssLang === 'scss' ? ['css', 'scss'] : []),
+          ...(options.cssLang === 'less' ? ['css', 'less'] : []),
           ...(options.vue ? ['vue'] : [])
         ],
         /**
@@ -56,6 +59,7 @@ export default function (options: {
         // 禁用内置css校验，统一使用stylelint
         ...(options.cssLang === 'css' && { 'css.validate': false }),
         ...(options.cssLang === 'scss' && { 'css.validate': false, 'scss.validate': false }),
+        ...(options.cssLang === 'less' && { 'css.validate': false, 'less.validate': false }),
         // 禁用vetur自动格式化，防止与lint自动修复冲突
         ...(options.vue && { 'vetur.format.enable': false }),
         // 使用项目中的eslint包和配置

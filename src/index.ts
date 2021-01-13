@@ -10,7 +10,7 @@ import fse from 'fs-extra'
 import setVscode from '@/vscode'
 import setPackage from '@/package'
 import setConfig from '@/config'
-import { readJson } from '@/utils'
+import { readJson, gitNotIgnoreFile } from '@/utils'
 
 program.version(readJson(path.resolve(__dirname, '../package.json')).version, '-v, --version', '查看当前版本')
 program.option('-p, --path [value]', '要应用统一规范的项目的路径', process.cwd())
@@ -33,7 +33,7 @@ async function main() {
       name: 'cssLang',
       type: 'list',
       message: 'css代码语言',
-      choices: ['none', 'css', 'scss']
+      choices: ['none', 'css', 'scss', 'less']
     },
     {
       name: 'vue',
@@ -66,6 +66,22 @@ async function main() {
       shell: true
     })
   }
+
+  // git不忽略相关的文件
+  ;[
+    '.browserslistrc',
+    '.eslint-config.js',
+    '.eslintrc.js',
+    '.prettierrc.js',
+    '.stylelintrc.js',
+    'commitlint.config.js',
+    '.vscode/settings.json',
+    '.vscode/extensions.json',
+    '.gitignore',
+    'package.json'
+  ].forEach(file => {
+    gitNotIgnoreFile(pt, file)
+  })
 
   setConfig(config)
   setVscode(config)
