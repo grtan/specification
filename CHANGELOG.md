@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1-beta.0](https://gitlab.vmic.xyz///compare/v1.2.0-beta.1...v1.2.1-beta.0) (2021-02-07)
+
+
+### Bug Fixes
+
+* 修复stylelint规则不支持bem写法的问题；项目本身接入该规范；ci中npm帐号使用环境变量 ([cb0bd08](https://gitlab.vmic.xyz///commit/cb0bd0813d4116db2853112301a32300e6f8896b))
+
 ## [1.2.0](https://gitlab.vmic.xyz///compare/v1.2.0-beta.1...v1.2.0) (2021-01-13)
 
 ## [1.2.0-beta.1](https://gitlab.vmic.xyz///compare/v1.2.0-beta.0...v1.2.0-beta.1) (2021-01-13)
