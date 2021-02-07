@@ -31,7 +31,12 @@ export default function (options: {
         'editor.formatOnSave': true,
         // 开启lint自动修复
         'editor.codeActionsOnSave': {
-          'source.fixAll': true
+          'source.fixAll.eslint': true,
+          ...(options.cssLang === 'none'
+            ? {}
+            : {
+                'source.fixAll.stylelint': true
+              })
         },
         // 设置prettier为所有文件的默认格式化器
         'editor.defaultFormatter': 'esbenp.prettier-vscode',
