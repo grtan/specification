@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1-beta.1](https://gitlab.vmic.xyz///compare/v1.2.1-beta.0...v1.2.1-beta.1) (2021-02-07)
+
+
+### Bug Fixes
+
+* 修复保存代码时，一直提示Getting code actions from ''ESLint''之类的信息并阻塞的问题 ([76c15f3](https://gitlab.vmic.xyz///commit/76c15f3fb5bd7e22cada8584fcd739012e6d8d7d))
+
 ### [1.2.1-beta.0](https://gitlab.vmic.xyz///compare/v1.2.0-beta.1...v1.2.1-beta.0) (2021-02-07)
 
 
