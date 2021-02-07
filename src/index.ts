@@ -73,7 +73,7 @@ async function main() {
     '.eslint-config.js',
     '.eslintrc.js',
     '.prettierrc.js',
-    '.stylelintrc.js',
+    ...(cssLang === 'none' ? [] : ['.stylelintrc.js']),
     'commitlint.config.js',
     '.vscode/settings.json',
     '.vscode/extensions.json',

@@ -31,7 +31,12 @@ export default function (options: {
         'editor.formatOnSave': true,
         // 开启lint自动修复
         'editor.codeActionsOnSave': {
-          'source.fixAll': true
+          'source.fixAll.eslint': true,
+          ...(options.cssLang === 'none'
+            ? {}
+            : {
+                'source.fixAll.stylelint': true
+              })
         },
         // 设置prettier为所有文件的默认格式化器
         'editor.defaultFormatter': 'esbenp.prettier-vscode',
@@ -70,7 +75,7 @@ export default function (options: {
       },
       null,
       '  '
-    )
+    ) + '\n'
   )
 
   // 设置extensions.json
@@ -89,7 +94,7 @@ export default function (options: {
     }
   })
 
-  fse.outputFileSync(extensionsPath, JSON.stringify(extensions, null, '  '))
+  fse.outputFileSync(extensionsPath, JSON.stringify(extensions, null, '  ') + '\n')
 
   // 安装vscode插件
   recommendations.forEach(plugin => {

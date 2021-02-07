@@ -46,9 +46,9 @@ module.exports = {
     ],
     // 类选择器模式，类名只能由小写字母、数字和连字符组成
     'selector-class-pattern': [
-      '^[a-z0-9\\-]+$',
+      '^[a-z0-9\\-_]+$',
       {
-        message: '类名只能由小写字母、数字和连字符组成'
+        message: '类名只能由小写字母、数字、中划线和下划线组成'
       }
     ],
     // 禁止未知的伪元素
@@ -71,21 +71,21 @@ module.exports = {
         'custom-properties'{{if cssLang==='scss'}},
         'dollar-variables',
         {
-          'type': 'at-rule',
-          'name': 'extend'
+          type: 'at-rule',
+          name: 'extend'
         },
         {
-          'type': 'at-rule',
-          'name': 'include',
-          'hasBlock': false
+          type: 'at-rule',
+          name: 'include',
+          hasBlock: false
         }{{/if}}{{if cssLang==='less'}},
         'at-variables',
         'less-mixins'{{/if}},
         'declarations'{{if cssLang==='scss'}},
         {
-          'type': 'at-rule',
-          'name': 'include',
-          'hasBlock': true
+          type: 'at-rule',
+          name: 'include',
+          hasBlock: true
         }{{/if}}{{if cssLang!=='css'}},
         'rules'{{/if}}
       ]

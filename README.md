@@ -48,8 +48,7 @@ spec -v
 - none —— 表明项目中不包含样式代码，将不会校验样式代码
 - css —— 表明项目中样式采用纯 css 编写，将会校验`.css`文件和`.html`、`.vue`等文件中的样式部分，只允许普通 css 语法
 - scss —— 表明项目中样式采用 scss 编写，将会校验`.css`、`.scss`文件和`.html`、`.vue`等文件中的样式部分，允许 scss 语法
-
-> 目前还未支持 less 规范，后续将会加入
+- less **(v1.2.0+)** —— 表明项目中样式采用 less 编写，将会校验`.css`、`.less`文件和`.html`、`.vue`等文件中的样式部分，允许 less 语法
 
 <img src="./docs/images/vue.png" style="height:75px">
 
