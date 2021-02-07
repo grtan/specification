@@ -70,7 +70,7 @@ export default function (options: {
       },
       null,
       '  '
-    )
+    ) + '\n'
   )
 
   // 设置extensions.json
@@ -89,7 +89,7 @@ export default function (options: {
     }
   })
 
-  fse.outputFileSync(extensionsPath, JSON.stringify(extensions, null, '  '))
+  fse.outputFileSync(extensionsPath, JSON.stringify(extensions, null, '  ') + '\n')
 
   // 安装vscode插件
   recommendations.forEach(plugin => {

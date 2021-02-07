@@ -110,7 +110,7 @@ export default function (options: {
   packageJson.config.commitizen.path = 'cz-conventional-changelog'
 
   // 重写package.json
-  fse.outputFileSync(packageJsonPath, JSON.stringify(packageJson, null, '  '))
+  fse.outputFileSync(packageJsonPath, JSON.stringify(packageJson, null, '  ') + '\n')
 
   // 安装依赖包
   console.log('安装依赖包...')
