@@ -77,6 +77,7 @@ async function main() {
     'commitlint.config.js',
     '.vscode/settings.json',
     '.vscode/extensions.json',
+    'imagemin.js',
     '.gitignore',
     'package.json'
   ].forEach(file => {
