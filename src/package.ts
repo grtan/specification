@@ -18,7 +18,13 @@ const base = [
   'commitizen@^4.2.2',
   'cz-conventional-changelog@^3.3.0',
   '@commitlint/cli@^11.0.0',
-  '@commitlint/config-conventional@^11.0.0'
+  '@commitlint/config-conventional@^11.0.0',
+  'minimist@^1.2.5',
+  'imagemin@^7.0.1',
+  'imagemin-svgo@^9.0.0',
+  'imagemin-gifsicle@^7.0.0',
+  'imagemin-jpegtran@^7.0.0',
+  'imagemin-pngquant@^9.0.1'
 ]
 const ts = [
   'typescript',
@@ -78,7 +84,9 @@ export default function (options: {
   packageJson.husky.hooks['commit-msg'] = 'commitlint -E HUSKY_GIT_PARAMS'
 
   // 配置lint-staged
-  packageJson['lint-staged'] = {}
+  packageJson['lint-staged'] = {
+    '*.{png,gif,jpg,jpeg,svg}': 'node ./imagemin.js'
+  }
   packageJson['lint-staged'][
     `*.{${[
       options.jsLang === 'js' ? ['js', 'jsx'] : [],

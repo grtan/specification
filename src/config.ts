@@ -48,4 +48,10 @@ export default function (options: {
     path.resolve(options.path, 'commitlint.config.js'),
     artTemplate(path.resolve(__dirname, '../template/commitlint.config.art'), options)
   )
+
+  // 生成imagemin.js
+  fse.outputFileSync(
+    path.resolve(options.path, 'imagemin.js'),
+    artTemplate(path.resolve(__dirname, '../template/imagemin.art'), options)
+  )
 }
