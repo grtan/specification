@@ -18,8 +18,6 @@ const imageminSvgo = require('imagemin-svgo')
 const argv = require('minimist')(process.argv.slice(2))
 let files = argv._ // lint-staged 脚本传入待提交的图片
 
-console.log('files:', JSON.stringify(files))
-
 if (argv.imgsrc) {
   // 如果存在 imgsrc 参数，认为是手动压缩
   files = readdir(argv.imgsrc)
