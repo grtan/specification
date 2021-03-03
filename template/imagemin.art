@@ -45,7 +45,13 @@ files.forEach(async f => {
       break
     case '.jpg':
     case '.jpeg':
-      await minImage(f, filePath, imageminJpegtran())
+      await minImage(
+        f,
+        filePath,
+        imageminJpegtran({
+          progressive: true
+        })
+      )
       break
     case '.gif':
       await minImage(f, filePath, imageminGifsicle())
