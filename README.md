@@ -2,6 +2,10 @@
 
 统一项目代码规范的命令行工具。该工具会对代码进行格式检查，保存代码文件时会按照统一规范自动格式化，提交代码时也会对本次修改、新增的文件进行检查，如果有文件的格式不满足规范，那么提交就会失败。同时该工具也会对 git commit 信息进行检查，如果提交信息不符合[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)规范，提交也会失败。
 
+**扩展功能**
+
+1. 图片压缩： 利用图片压缩工具 [imagemin](https://github.com/imagemin/imagemin)，和 `pre-commit` 钩子，在提交图片时对图片进行压缩处理
+
 > **目前该工具只适合搭配 vscode 使用**
 
 ## 安装

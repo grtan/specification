@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://gitlab.vmic.xyz///compare/v1.3.0-beta.1...v1.3.0) (2021-03-03)
+
+## [1.3.0-beta.1](https://gitlab.vmic.xyz///compare/v1.3.0-beta.0...v1.3.0-beta.1) (2021-03-03)
+
+
+### Bug Fixes
+
+* gitignore文件忽略生成的imagemin.js文件 ([addbe6d](https://gitlab.vmic.xyz///commit/addbe6d564686b4bf25b2919e29805b839b32929))
+
+## [1.3.0-beta.0](https://gitlab.vmic.xyz///compare/v1.2.1-beta.1...v1.3.0-beta.0) (2021-03-03)
+
+
+### Features
+
+* 增加 pre-commit hook,当提交图片时自动无感压缩图片,提升web性能 ([3ee9622](https://gitlab.vmic.xyz///commit/3ee96222d94fdc344fa93ab281b10d2732aa1347))
+
+
+### Bug Fixes
+
+* 1. 生成imagemin.js 2.增加对svg的压缩支持 3. 增加对jpeg的压缩 ([ebdb0a6](https://gitlab.vmic.xyz///commit/ebdb0a6904283c751d7b8c7b608e426e9127bd4d))
+
 ### [1.2.1](https://gitlab.vmic.xyz///compare/v1.2.1-beta.1...v1.2.1) (2021-02-07)
 
 ### [1.2.1-beta.1](https://gitlab.vmic.xyz///compare/v1.2.1-beta.0...v1.2.1-beta.1) (2021-02-07)
