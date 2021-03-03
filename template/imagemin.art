@@ -13,6 +13,7 @@ const imagemin = require('imagemin')
 const imageminPngquant = require('imagemin-pngquant')
 const imageminJpegtran = require('imagemin-jpegtran')
 const imageminGifsicle = require('imagemin-gifsicle')
+const imageminSvgo = require('imagemin-svgo')
 
 const argv = require('minimist')(process.argv.slice(2))
 let files = argv._ // lint-staged 脚本传入待提交的图片
@@ -45,10 +46,14 @@ files.forEach(async f => {
       )
       break
     case '.jpg':
+    case '.jpeg':
       await minImage(f, filePath, imageminJpegtran())
       break
     case '.gif':
       await minImage(f, filePath, imageminGifsicle())
+      break
+    case '.svg':
+      await minImage(f, filePath, imageminSvgo())
       break
     default:
       break

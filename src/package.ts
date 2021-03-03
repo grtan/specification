@@ -21,6 +21,7 @@ const base = [
   '@commitlint/config-conventional@^11.0.0',
   'minimist@^1.2.5',
   'imagemin@^7.0.1',
+  'imagemin-svgo@^9.0.0',
   'imagemin-gifsicle@^7.0.0',
   'imagemin-jpegtran@^7.0.0',
   'imagemin-pngquant@^9.0.1'
@@ -84,7 +85,7 @@ export default function (options: {
 
   // 配置lint-staged
   packageJson['lint-staged'] = {
-    '"*.{png,gif,jpg}"': '"node ./imagemin.js"'
+    '*.{png,gif,jpg,jpeg,svg}': 'node ./imagemin.js'
   }
   packageJson['lint-staged'][
     `*.{${[
