@@ -1,0 +1,85 @@
+/**
+ * 压缩图片
+ * 用法：
+ * 1. package.json 中 lint-staged 中，当提交图片时，会执行此脚本，自动压缩图片并上传
+ * 2. 对于git 仓库中已经存在的图片，可以手动运行此脚本，压缩
+ *  node imagemin.js --imgsrc ./xx/imgs   通过 --imgsrc 传入 图片所在目录即可，压缩完成后，手动提交
+ */
+
+const fs = require('fs')
+const path = require('path')
+
+const imagemin = require('imagemin')
+const imageminPngquant = require('imagemin-pngquant')
+const imageminJpegtran = require('imagemin-jpegtran')
+const imageminGifsicle = require('imagemin-gifsicle')
+
+const argv = require('minimist')(process.argv.slice(2))
+let files = argv._ // lint-staged 脚本传入待提交的图片
+
+console.log('files:', JSON.stringify(files))
+
+if (argv.imgsrc) {
+  // 如果存在 imgsrc 参数，认为是手动压缩
+  files = readdir(argv.imgsrc)
+}
+
+const minImage = async function (src, des, plugin) {
+  await imagemin([src], {
+    destination: des,
+    plugins: [plugin]
+  })
+}
+
+files.forEach(async f => {
+  const filePath = f.substring(0, f.lastIndexOf('/'))
+  const suffix = f.substring(f.lastIndexOf('.'))
+  switch (suffix) {
+    case '.png':
+      await minImage(
+        f,
+        filePath,
+        imageminPngquant({
+          quality: [0.6, 0.8]
+        })
+      )
+      break
+    case '.jpg':
+      await minImage(f, filePath, imageminJpegtran())
+      break
+    case '.gif':
+      await minImage(f, filePath, imageminGifsicle())
+      break
+    default:
+      break
+  }
+})
+
+/**
+ * 递归扫描所有文件
+ * @param {String} root 要扫描的根目录
+ * @param {Functioin} filter 要过滤的文件， 默认过滤.xxx
+ * @param {Array} files 扫描出来的的文件集合
+ * @param {String} prefix 用于递归时传递内层的dir
+ */
+function readdir(root, filter = noDotFiles, files = [], prefix = '') {
+  const dir = path.posix.join(root, prefix)
+  if (!fs.existsSync(dir)) return files
+  if (fs.statSync(dir).isDirectory()) {
+    fs.readdirSync(dir)
+      .filter(function (name, index) {
+        return filter(name, index, dir)
+      })
+      .forEach(function (name) {
+        readdir(root, filter, files, path.posix.join(prefix, name))
+      })
+  } else {
+    files.push(dir)
+  }
+
+  return files
+}
+
+function noDotFiles(x) {
+  return x[0] !== '.'
+}
