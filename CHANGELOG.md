@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://gitlab.vmic.xyz///compare/v1.3.1-beta.0...v1.3.1) (2021-03-04)
+
+### [1.3.1-beta.0](https://gitlab.vmic.xyz///compare/v1.3.0-beta.1...v1.3.1-beta.0) (2021-03-04)
+
+
+### Bug Fixes
+
+* jpeg 图片压缩成渐进式的,提升体验 ([0ad4542](https://gitlab.vmic.xyz///commit/0ad4542841d1e2c362a3c713ea82ee65a34d181f))
+
 ## [1.3.0](https://gitlab.vmic.xyz///compare/v1.3.0-beta.1...v1.3.0) (2021-03-03)
 
 ## [1.3.0-beta.1](https://gitlab.vmic.xyz///compare/v1.3.0-beta.0...v1.3.0-beta.1) (2021-03-03)
