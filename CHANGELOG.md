@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.2-beta.0](https://gitlab.vmic.xyz///compare/v1.3.1-beta.0...v1.3.2-beta.0) (2021-04-01)
+
+
+### Bug Fixes
+
+* 压缩图片依赖的包只在实际压缩图片时才安装,避免cicd上每次构建耗时太久 ([0cb6187](https://gitlab.vmic.xyz///commit/0cb61870b42cfb6a78973aa348b9a466fede5e36))
+
 ### [1.3.1](https://gitlab.vmic.xyz///compare/v1.3.1-beta.0...v1.3.1) (2021-03-04)
 
 ### [1.3.1-beta.0](https://gitlab.vmic.xyz///compare/v1.3.0-beta.1...v1.3.1-beta.0) (2021-03-04)
