@@ -18,13 +18,7 @@ const base = [
   'commitizen@^4.2.2',
   'cz-conventional-changelog@^3.3.0',
   '@commitlint/cli@^11.0.0',
-  '@commitlint/config-conventional@^11.0.0',
-  'minimist@^1.2.5',
-  'imagemin@^7.0.1',
-  'imagemin-svgo@^9.0.0',
-  'imagemin-gifsicle@^7.0.0',
-  'imagemin-jpegtran@^7.0.0',
-  'imagemin-pngquant@^9.0.1'
+  '@commitlint/config-conventional@^11.0.0'
 ]
 const ts = [
   'typescript',
@@ -75,6 +69,9 @@ export default function (options: {
 
   // 配置scripts
   packageJson.scripts = packageJson.scripts || {}
+  packageJson.scripts.precompress =
+    'npm i --no-save minimist imagemin imagemin-jpegtran imagemin-gifsicle imagemin-svgo imagemin-pngquant'
+  packageJson.scripts.compress = 'node ./imagemin.js'
   packageJson.scripts.commit = 'cz'
 
   // 配置husky
@@ -85,7 +82,7 @@ export default function (options: {
 
   // 配置lint-staged
   packageJson['lint-staged'] = {
-    '*.{png,gif,jpg,jpeg,svg}': 'node ./imagemin.js'
+    '*.{png,gif,jpg,jpeg,svg}': 'npm run compress --'
   }
   packageJson['lint-staged'][
     `*.{${[
