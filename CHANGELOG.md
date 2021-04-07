@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.3-beta.0](https://gitlab.vmic.xyz///compare/v1.3.2-beta.0...v1.3.3-beta.0) (2021-04-07)
+
+
+### Bug Fixes
+
+* 优化vscode-eslint设置，去掉废弃写法；上传package-lock.json ([d8eb536](https://gitlab.vmic.xyz///commit/d8eb53637c97bdc41a412350bf1f60a198780e37))
+
 ### [1.3.2](https://gitlab.vmic.xyz///compare/v1.3.2-beta.0...v1.3.2) (2021-04-01)
 
 ### [1.3.2-beta.0](https://gitlab.vmic.xyz///compare/v1.3.1-beta.0...v1.3.2-beta.0) (2021-04-01)
