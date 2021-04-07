@@ -43,15 +43,24 @@ export default function (options: {
         // 取消全局prettier配置文件
         'prettier.configPath': '',
         // 禁止prettier格式化js、ts、css、vue文件，统一使用eslint/stylelint
-        'prettier.disableLanguages': [
-          'javascript',
-          'javascriptreact',
-          ...(options.jsLang === 'ts' ? ['typescript', 'typescriptreact'] : []),
-          ...(options.cssLang === 'css' ? ['css'] : []),
-          ...(options.cssLang === 'scss' ? ['css', 'scss'] : []),
-          ...(options.cssLang === 'less' ? ['css', 'less'] : []),
-          ...(options.vue ? ['vue'] : [])
-        ],
+        ...(() => {
+          const languages = ['javascript', 'javascriptreact']
+          const config: Record<string, any> = {}
+
+          options.jsLang === 'ts' && languages.push('typescript', 'typescriptreact')
+          options.cssLang === 'css' && languages.push('css')
+          options.cssLang === 'scss' && languages.push('css', 'scss')
+          options.cssLang === 'less' && languages.push('css', 'less')
+          options.vue && languages.push('vue')
+
+          languages.forEach(language => {
+            config[`[${language}]`] = {
+              'editor.defaultFormatter': null
+            }
+          })
+
+          return config
+        })(),
         /**
          * 因为prettier禁用了对js/ts/css的校验，导致会使用内置格式器来格式化这些文件，从而跟eslint/stylelint冲突
          * 所以要禁用内置js/ts的格式化，统一使用eslint
