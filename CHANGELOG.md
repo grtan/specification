@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.3-beta.1](https://gitlab.vmic.xyz///compare/v1.3.3-beta.0...v1.3.3-beta.1) (2021-05-13)
+
+
+### Bug Fixes
+
+* 由于autoprefixer对部分css属性值不自动添加前缀，所以支持display: box的值添加浏览器前缀 ([e01983d](https://gitlab.vmic.xyz///commit/e01983dc81519a6760fe84163fece7c9e57b2f4a))
+
 ### [1.3.3-beta.0](https://gitlab.vmic.xyz///compare/v1.3.2-beta.0...v1.3.3-beta.0) (2021-04-07)
 
 
