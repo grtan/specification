@@ -12,7 +12,12 @@ module.exports = {
     'media-feature-name-no-vendor-prefix': true,
     'property-no-vendor-prefix': true,
     'selector-no-vendor-prefix': true,
-    'value-no-vendor-prefix': true,
+    'value-no-vendor-prefix': [
+      true,
+      {
+        ignoreValues: ['box']
+      }
+    ],
     // 多行规则前总是有空行
     'rule-empty-line-before': [
       'always-multi-line',
